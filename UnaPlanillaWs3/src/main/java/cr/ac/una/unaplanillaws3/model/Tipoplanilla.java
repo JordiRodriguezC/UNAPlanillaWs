@@ -58,12 +58,12 @@ public class Tipoplanilla implements Serializable {
     private Long tplaId;
     @Basic(optional = false)
 
-    @Size(min = 1, max = 4)
+    //@Size(min = 1, max = 4)
     @Column(name = "TPLA_CODIGO")
     private String tplaCodigo;
     @Basic(optional = false)
 
-    @Size(min = 1, max = 40)
+    //@Size(min = 1, max = 40)
     @Column(name = "TPLA_DESCRIPCION")
     private String tplaDescripcion;
     @Basic(optional = false)
@@ -78,7 +78,7 @@ public class Tipoplanilla implements Serializable {
     private Integer tplaNumultpla;
     @Basic(optional = false)
 
-    @Size(min = 1, max = 1)
+    //@Size(min = 1, max = 1)
     @Column(name = "TPLA_ESTADO")
     private String tplaEstado;
     @Basic(optional = false)

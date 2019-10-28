@@ -157,6 +157,7 @@ public class Empleado implements Serializable {
             this.empFsalida = Date.from(empleado.getEmpFsalida().atStartOfDay(ZoneId.systemDefault()).toInstant());
         }
         this.empEstado = empleado.getEmpEstado();
+        this.empVersion = empleado.getEmpVersion();
     }
 
     public Long getEmpId() {

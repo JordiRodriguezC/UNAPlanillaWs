@@ -39,6 +39,7 @@ public class EmpleadoDto {
     private String empEstado;
     private String Token;
     private Boolean modificado;
+    private Long empVersion;
     
     public EmpleadoDto() {
     }
@@ -69,6 +70,7 @@ public class EmpleadoDto {
             this.empFsalida = null;
         }
         this.empEstado = empleado.getEmpEstado();
+        this.empVersion = empleado.getEmpVersion();
     }
 
     public Long getEmpId() {
@@ -183,6 +185,16 @@ public class EmpleadoDto {
         this.empEstado = empEstado;
     }
 
+    public Long getEmpVersion() {
+        return empVersion;
+    }
+
+    public void setEmpVersion(Long empVersion) {
+        this.empVersion = empVersion;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "EmpleadoDto{" + "empId=" + empId + ", empNombre=" + empNombre + ", empPapellido=" + empPapellido + ", empSapellido=" + empSapellido + ", empCedula=" + empCedula + ", empGenero=" + empGenero + ", empCorreo=" + empCorreo + ", empAdministrador=" + empAdministrador + ", empUsuario=" + empUsuario + ", empClave=" + empClave + ", empFingreso=" + empFingreso + ", empFsalida=" + empFsalida + ", empEstado=" + empEstado + '}';
