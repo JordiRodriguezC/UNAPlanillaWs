@@ -49,27 +49,19 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Tipoplanilla implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-
     @SequenceGenerator(name = "PLAM_PLANILLAS_EMP_ID_GENERATOR", sequenceName = "UNA.PLAM_TIPOPLANILLAS_SEC01", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PLAM_PLANILLAS_EMP_ID_GENERATOR")
     @Basic(optional = false)
-
     @Column(name = "TPLA_ID")
     private Long tplaId;
     @Basic(optional = false)
-
-    @Size(min = 1, max = 4)
     @Column(name = "TPLA_CODIGO")
     private String tplaCodigo;
     @Basic(optional = false)
-
-    @Size(min = 1, max = 40)
     @Column(name = "TPLA_DESCRIPCION")
     private String tplaDescripcion;
     @Basic(optional = false)
-
     @Column(name = "TPLA_PLAXMES")
     private Integer tplaPlaxmes;
     @Column(name = "TPLA_ANOULTPLA")
@@ -79,12 +71,9 @@ public class Tipoplanilla implements Serializable {
     @Column(name = "TPLA_NUMULTPLA")
     private Integer tplaNumultpla;
     @Basic(optional = false)
-
-    @Size(min = 1, max = 1)
     @Column(name = "TPLA_ESTADO")
     private String tplaEstado;
     @Basic(optional = false)
-
     @Column(name = "TPLA_VERSION")
     private Long tplaVersion;
     @JoinTable(name = "PLAM_EMPLEADOSPLANILLA", joinColumns = {
@@ -109,6 +98,7 @@ public class Tipoplanilla implements Serializable {
         this.tplaCodigo = tipoPlanillaDto.getTplaCodigo();
         this.tplaDescripcion = tipoPlanillaDto.getTplaDescripcion();
         this.tplaEstado = tipoPlanillaDto.getTplaEstado();
+        this.tplaVersion = tipoPlanillaDto.getTplaVersion();
     }
 
     public Tipoplanilla(Long tplaId, String tplaCodigo, String tplaDescripcion, Integer tplaPlaxmes, String tplaEstado, Long tplaVersion) {
