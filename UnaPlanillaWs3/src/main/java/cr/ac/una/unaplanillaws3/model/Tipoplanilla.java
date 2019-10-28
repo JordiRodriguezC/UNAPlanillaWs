@@ -19,6 +19,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.QueryHint;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -42,6 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Tipoplanilla.findByTplaAnoultpla", query = "SELECT t FROM Tipoplanilla t WHERE t.tplaAnoultpla = :tplaAnoultpla")
     , @NamedQuery(name = "Tipoplanilla.findByTplaMesultpla", query = "SELECT t FROM Tipoplanilla t WHERE t.tplaMesultpla = :tplaMesultpla")
     , @NamedQuery(name = "Tipoplanilla.findByTplaNumultpla", query = "SELECT t FROM Tipoplanilla t WHERE t.tplaNumultpla = :tplaNumultpla")
+    ,@NamedQuery(name = "Tipoplanilla.findByCodigoIdPlanillaPorMes", query = "SELECT t FROM Tipoplanilla t WHERE UPPER(t.tplaCodigo) like :codigo and UPPER(t.tplaId) like :id and UPPER(t.tplaPlaxmes) like :planillaPorMes", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
     , @NamedQuery(name = "Tipoplanilla.findByTplaEstado", query = "SELECT t FROM Tipoplanilla t WHERE t.tplaEstado = :tplaEstado")
     , @NamedQuery(name = "Tipoplanilla.findByTplaVersion", query = "SELECT t FROM Tipoplanilla t WHERE t.tplaVersion = :tplaVersion")})
 public class Tipoplanilla implements Serializable {

@@ -12,6 +12,8 @@ import cr.ac.una.unaplanillaws3.model.Tipoplanilla;
 import cr.ac.una.unaplanillaws3.util.CodigoRespuesta;
 import cr.ac.una.unaplanillaws3.util.Respuesta;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.LocalBean;
@@ -74,6 +76,29 @@ public class TipoPlanillaService {
       
     }
 
+    
+    public Respuesta getPlanillas(String codigo, String id, String planillaPorMes) {
+        try {
+            Query qryEmpleado = em.createNamedQuery("Empleado.findByCodigoIdPlanillaPorMes", Empleado.class);
+            qryEmpleado.setParameter("codigo", codigo);
+            qryEmpleado.setParameter("id", id);
+            qryEmpleado.setParameter("planillaPorMes", planillaPorMes);
+            List<Empleado> empleados = qryEmpleado.getResultList();
+            List<EmpleadoDto> empleadosDto = new ArrayList<>();
+            for (Empleado empleado : empleados) {
+                empleadosDto.add(new EmpleadoDto(empleado));
+            }
+
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Planillas", empleadosDto);
+
+        } catch (NoResultException ex) {
+            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen empleados con los criterios ingresados.", "getEmpleados NoResultException");
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el empleado.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el empleado.", "getEmpleado " + ex.getMessage());
+        }
+    }
+    
     public Respuesta eliminarTipoPlanilla(Long id) {
        try {
             Tipoplanilla planilla;

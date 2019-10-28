@@ -11,6 +11,8 @@ import cr.ac.una.unaplanillaws3.service.TipoPlanillaService;
 import cr.ac.una.unaplanillaws3.util.CodigoRespuesta;
 import cr.ac.una.unaplanillaws3.util.Respuesta;
 import cr.ac.una.unaplanillaws3.util.Secure;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -21,6 +23,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -34,6 +37,24 @@ public class TipoPlanillaController {
     @EJB
     TipoPlanillaService planillaService;
     
+    
+    @GET
+    @Path("/planillas/{codigo}/{id}/{planillaPorMes}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getEmpleados(@PathParam("codigo") String codigo, @PathParam("id") String id, @PathParam("planillaPorMes") String planillasPorMes) {
+        try {
+            Respuesta res = planillaService.getPlanillas(codigo, id, planillasPorMes);
+            if (!res.getEstado()) {
+                return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
+            }
+            ArrayList<EmpleadoDto> empeladosDto = (ArrayList<EmpleadoDto>) res.getResultado("Empleados");
+            
+            return Response.ok(new GenericEntity<List<EmpleadoDto>>(empeladosDto){}).build();
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoController.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo los empleados").build();
+        }
+    }
     
     @GET
     @Path("/planilla/{id}")
