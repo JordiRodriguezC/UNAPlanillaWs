@@ -79,7 +79,7 @@ public class TipoPlanillaService {
     
     public Respuesta getPlanillas(String codigo, String id, String planillaPorMes) {
         try {
-            Query qryEmpleado = em.createNamedQuery("Empleado.findByCodigoIdPlanillaPorMes", Empleado.class);
+            Query qryEmpleado = em.createNamedQuery("Tipoplanilla.findByCodigoIdPlanillaPorMes", Empleado.class);
             qryEmpleado.setParameter("codigo", codigo);
             qryEmpleado.setParameter("id", id);
             qryEmpleado.setParameter("planillaPorMes", planillaPorMes);
