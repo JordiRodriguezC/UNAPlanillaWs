@@ -97,6 +97,11 @@ public class Tipoplanilla implements Serializable {
         this.tplaDescripcion = tipoPlanillaDto.getTplaDescripcion();
         this.tplaEstado = tipoPlanillaDto.getTplaEstado();
         this.tplaVersion = tipoPlanillaDto.getTplaVersion();
+        this.tplaAnoultpla = tipoPlanillaDto.getTplaAnoultpla();
+        this.tplaNumultpla = tipoPlanillaDto.getTplaNumultpla();
+        this.tplaMesultpla = tipoPlanillaDto.getTplaMesultpla();
+        this.tplaPlaxmes = tipoPlanillaDto.getTplaPlaxmes();
+       
     }
 
     public Tipoplanilla(Long tplaId, String tplaCodigo, String tplaDescripcion, Integer tplaPlaxmes, String tplaEstado, Long tplaVersion) {

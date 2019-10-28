@@ -42,8 +42,24 @@ public class TipoPlanillaDto {
     private Integer tplaNumultpla;
     public String tplaEstado;
     private Boolean modificado;
+    private Long tplaVersion;
     ObservableList<EmpleadoDto> empleados;
     List<EmpleadoDto> empleadosEliminados;
+    
+    
+  /*  public SimpleStringProperty tplaId;
+    public SimpleStringProperty tplaCodigo;
+    public SimpleStringProperty tplaDescripcion;
+    public SimpleStringProperty tplaPlaxmes;
+    private Integer tplaAnoultpla;
+    private Integer tplaMesultpla;
+    private Integer tplaNumultpla;
+    public SimpleBooleanProperty tplaEstado;
+    private Boolean modificado;
+    private Long tplaVersion;
+    ObservableList<EmpleadoDto> empleados;
+    List<EmpleadoDto> empleadosEliminados;*/
+
 
    
     public TipoPlanillaDto(Tipoplanilla tipoPlanilla) {
@@ -57,6 +73,7 @@ public class TipoPlanillaDto {
         this.tplaEstado = tipoPlanilla.getTplaEstado();
         this.empleados = FXCollections.observableList(new ArrayList());
         this.empleadosEliminados = new ArrayList();
+        this.tplaVersion = tipoPlanilla.getTplaVersion();
     }
     public Long getTplaId() {
         return this.tplaId;
@@ -146,6 +163,16 @@ public class TipoPlanillaDto {
         this.empleadosEliminados = empleadosEliminados;
     }
 
+    public Long getTplaVersion() {
+        return tplaVersion;
+    }
+
+    public void setTplaVersion(Long tplaVersion) {
+        this.tplaVersion = tplaVersion;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "TipoPlanillaDto{" + "tplaId=" + tplaId + ", tplaCodigo=" + tplaCodigo + ", tplaDescripcion=" + tplaDescripcion + ", tplaPlaxmes=" + tplaPlaxmes + ", tplaAnoultpla=" + tplaAnoultpla + ", tplaMesultpla=" + tplaMesultpla + ", tplaNumultpla=" + tplaNumultpla + ", tplaEstado=" + tplaEstado + ", modificado=" + modificado + ", empleados=" + empleados + ", empleadosEliminados=" + empleadosEliminados + '}';
