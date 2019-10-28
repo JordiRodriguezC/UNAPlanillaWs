@@ -10,11 +10,13 @@ import cr.ac.una.unaplanillaws3.model.TipoPlanillaDto;
 import cr.ac.una.unaplanillaws3.service.TipoPlanillaService;
 import cr.ac.una.unaplanillaws3.util.CodigoRespuesta;
 import cr.ac.una.unaplanillaws3.util.Respuesta;
+import cr.ac.una.unaplanillaws3.util.Secure;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -26,9 +28,28 @@ import javax.ws.rs.core.Response;
  *
  * @author JORDI RODRIGUEZ
  */
+@Secure
+@Path("/TipoPlanillaController")
 public class TipoPlanillaController {
     @EJB
     TipoPlanillaService planillaService;
+    
+    
+    @GET
+    @Path("/planilla/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPlanilla(@PathParam("id") Long id) {
+        try {
+            Respuesta res = planillaService.getPlanilla(id);
+            if (!res.getEstado()) {
+                return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
+            }
+            return Response.ok((EmpleadoDto) res.getResultado("Planilla")).build();
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoController.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo la planilla").build();
+        }
+    }
     
     @POST
     @Path("/guardar")
