@@ -83,13 +83,13 @@ public class TipoPlanillaService {
             qryEmpleado.setParameter("codigo", codigo);
             qryEmpleado.setParameter("id", id);
             qryEmpleado.setParameter("planillaPorMes", planillaPorMes);
-            List<Empleado> empleados = qryEmpleado.getResultList();
-            List<EmpleadoDto> empleadosDto = new ArrayList<>();
-            for (Empleado empleado : empleados) {
-                empleadosDto.add(new EmpleadoDto(empleado));
+            List<Tipoplanilla> planillas = qryEmpleado.getResultList();
+            List<TipoPlanillaDto> planillasDto = new ArrayList<>();
+            for (Tipoplanilla planilla : planillas) {
+                planillasDto.add(new TipoPlanillaDto(planilla));
             }
 
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Planillas", empleadosDto);
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Planillas", planillasDto);
 
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen empleados con los criterios ingresados.", "getEmpleados NoResultException");

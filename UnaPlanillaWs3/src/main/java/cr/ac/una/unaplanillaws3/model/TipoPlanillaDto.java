@@ -14,7 +14,6 @@ package cr.ac.una.unaplanillaws3.model;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -32,34 +31,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class TipoPlanillaDto {
 
     private Long tplaId;
-    public String tplaCodigo;
-    public String tplaDescripcion;
-    public Integer tplaPlaxmes;
+    private String tplaCodigo;
+    private String tplaDescripcion;
+    private Integer tplaPlaxmes;
     private Integer tplaAnoultpla;
     private Integer tplaMesultpla;
     private Integer tplaNumultpla;
-    public String tplaEstado;
+    private String tplaEstado;
     private Boolean modificado;
     private Long tplaVersion;
     ObservableList<EmpleadoDto> empleados;
     List<EmpleadoDto> empleadosEliminados;
-    
-    
-  /*  public SimpleStringProperty tplaId;
-    public SimpleStringProperty tplaCodigo;
-    public SimpleStringProperty tplaDescripcion;
-    public SimpleStringProperty tplaPlaxmes;
-    private Integer tplaAnoultpla;
-    private Integer tplaMesultpla;
-    private Integer tplaNumultpla;
-    public SimpleBooleanProperty tplaEstado;
-    private Boolean modificado;
-    private Long tplaVersion;
-    ObservableList<EmpleadoDto> empleados;
-    List<EmpleadoDto> empleadosEliminados;*/
 
 
-   
     public TipoPlanillaDto(Tipoplanilla tipoPlanilla) {
         this.tplaId = tipoPlanilla.getTplaId();
         this.tplaCodigo = tipoPlanilla.getTplaCodigo();
@@ -69,13 +53,13 @@ public class TipoPlanillaDto {
         this.tplaMesultpla = tipoPlanilla.getTplaPlaxmes();
         this.tplaNumultpla = tipoPlanilla.getTplaNumultpla();
         this.tplaEstado = tipoPlanilla.getTplaEstado();
-        this.empleados = FXCollections.observableList(new ArrayList());
+        this.empleados = FXCollections.observableArrayList();
         this.empleadosEliminados = new ArrayList();
         this.tplaVersion = tipoPlanilla.getTplaVersion();
     }
 
-   public Long getTplaId() {
-       return this.tplaId;
+    public Long getTplaId() {
+        return this.tplaId;
     }
 
     public void setTplaId(Long tplaId) {
@@ -170,11 +154,9 @@ public class TipoPlanillaDto {
         this.tplaVersion = tplaVersion;
     }
 
-    
     @Override
     public String toString() {
         return "TipoPlanillaDto{" + "tplaId=" + tplaId + ", tplaCodigo=" + tplaCodigo + ", tplaDescripcion=" + tplaDescripcion + ", tplaPlaxmes=" + tplaPlaxmes + ", tplaAnoultpla=" + tplaAnoultpla + ", tplaMesultpla=" + tplaMesultpla + ", tplaNumultpla=" + tplaNumultpla + ", tplaEstado=" + tplaEstado + ", modificado=" + modificado + ", empleados=" + empleados + ", empleadosEliminados=" + empleadosEliminados + '}';
     }
 
-   
 }
