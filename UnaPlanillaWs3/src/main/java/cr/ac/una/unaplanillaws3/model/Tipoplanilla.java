@@ -43,7 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Tipoplanilla.findByTplaAnoultpla", query = "SELECT t FROM Tipoplanilla t WHERE t.tplaAnoultpla = :tplaAnoultpla")
     , @NamedQuery(name = "Tipoplanilla.findByTplaMesultpla", query = "SELECT t FROM Tipoplanilla t WHERE t.tplaMesultpla = :tplaMesultpla")
     , @NamedQuery(name = "Tipoplanilla.findByTplaNumultpla", query = "SELECT t FROM Tipoplanilla t WHERE t.tplaNumultpla = :tplaNumultpla")
-    ,@NamedQuery(name = "Tipoplanilla.findByCodigoIdPlanillaPorMes", query = "SELECT t FROM Tipoplanilla t WHERE UPPER(t.tplaCodigo) like :codigo and UPPER(t.tplaId) like :id and UPPER(t.tplaPlaxmes) like :planillaPorMes", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
+    , @NamedQuery(name = "Tipoplanilla.findByCodigoIdPlanillaPorMes", query = "SELECT t FROM Tipoplanilla t WHERE UPPER(t.tplaCodigo) like :codigo and t.tplaId = :id and t.tplaPlaxmes = :planillaPorMes", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
     , @NamedQuery(name = "Tipoplanilla.findByTplaEstado", query = "SELECT t FROM Tipoplanilla t WHERE t.tplaEstado = :tplaEstado")
     , @NamedQuery(name = "Tipoplanilla.findByTplaVersion", query = "SELECT t FROM Tipoplanilla t WHERE t.tplaVersion = :tplaVersion")})
 public class Tipoplanilla implements Serializable {
@@ -103,7 +103,7 @@ public class Tipoplanilla implements Serializable {
         this.tplaNumultpla = tipoPlanillaDto.getTplaNumultpla();
         this.tplaMesultpla = tipoPlanillaDto.getTplaMesultpla();
         this.tplaPlaxmes = tipoPlanillaDto.getTplaPlaxmes();
-       
+
     }
 
     public Tipoplanilla(Long tplaId, String tplaCodigo, String tplaDescripcion, Integer tplaPlaxmes, String tplaEstado, Long tplaVersion) {

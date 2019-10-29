@@ -32,7 +32,7 @@ import javax.persistence.Query;
 @Stateless
 @LocalBean
 public class TipoPlanillaService {
-    private static final Logger LOG = Logger.getLogger(EmpleadoService.class.getName());
+    private static final Logger LOG = Logger.getLogger(TipoPlanillaService.class.getName());
 
     @PersistenceContext(unitName = "UnaPlanillaWs2PU")
     private EntityManager em;
@@ -79,7 +79,7 @@ public class TipoPlanillaService {
     
     public Respuesta getPlanillas(String codigo, String id, String planillaPorMes) {
         try {
-            Query qryEmpleado = em.createNamedQuery("Empleado.findByCodigoIdPlanillaPorMes", Empleado.class);
+            Query qryEmpleado = em.createNamedQuery("Tipoplanilla.findByCodigoIdPlanillaPorMes", Tipoplanilla.class);
             qryEmpleado.setParameter("codigo", codigo);
             qryEmpleado.setParameter("id", id);
             qryEmpleado.setParameter("planillaPorMes", planillaPorMes);
@@ -125,7 +125,7 @@ public class TipoPlanillaService {
     public Respuesta getPlanilla(Long id) {
         try {
             Query qryEmpleado = em.createNamedQuery("Tipoplanilla.findByTplaId", Tipoplanilla.class);
-            qryEmpleado.setParameter("empId", id);
+            qryEmpleado.setParameter("tplaId", id);
 
             return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "TipoPlanilla", new TipoPlanillaDto((Tipoplanilla) qryEmpleado.getSingleResult()));
 

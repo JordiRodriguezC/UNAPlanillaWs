@@ -17,8 +17,6 @@ package cr.ac.una.unaplanillaws3.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -75,8 +73,9 @@ public class TipoPlanillaDto {
         this.empleadosEliminados = new ArrayList();
         this.tplaVersion = tipoPlanilla.getTplaVersion();
     }
-    public Long getTplaId() {
-        return this.tplaId;
+
+   public Long getTplaId() {
+       return this.tplaId;
     }
 
     public void setTplaId(Long tplaId) {
@@ -100,7 +99,7 @@ public class TipoPlanillaDto {
     }
 
     public Integer getTplaPlaxmes() {
-       return this.tplaPlaxmes;
+        return this.tplaPlaxmes;
     }
 
     public void setTplaPlaxmes(Integer tplaPlaxmes) {
@@ -170,8 +169,7 @@ public class TipoPlanillaDto {
     public void setTplaVersion(Long tplaVersion) {
         this.tplaVersion = tplaVersion;
     }
-    
-    
+
     
     @Override
     public String toString() {

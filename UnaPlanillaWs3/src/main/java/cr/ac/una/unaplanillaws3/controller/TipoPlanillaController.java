@@ -31,7 +31,7 @@ import javax.ws.rs.core.Response;
  *
  * @author JORDI RODRIGUEZ
  */
-@Secure
+
 @Path("/TipoPlanillaController")
 public class TipoPlanillaController {
     @EJB
@@ -51,7 +51,7 @@ public class TipoPlanillaController {
             
             return Response.ok(new GenericEntity<List<EmpleadoDto>>(empeladosDto){}).build();
         } catch (Exception ex) {
-            Logger.getLogger(EmpleadoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoPlanillaController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo los empleados").build();
         }
     }
@@ -65,9 +65,9 @@ public class TipoPlanillaController {
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
-            return Response.ok((EmpleadoDto) res.getResultado("Planilla")).build();
+            return Response.ok((TipoPlanillaDto) res.getResultado("Planilla")).build();
         } catch (Exception ex) {
-            Logger.getLogger(EmpleadoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoPlanillaController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error obteniendo la planilla").build();
         }
     }
@@ -77,14 +77,15 @@ public class TipoPlanillaController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response guardarPlanilla(TipoPlanillaDto tipoPlanilla) {
+        System.out.println("XD");
         try {
             Respuesta respuesta = planillaService.guardarTipoPlanilla(tipoPlanilla);
             if (!respuesta.getEstado()) {
                 return Response.status(respuesta.getCodigoRespuesta().getValue()).entity(respuesta.getMensaje()).build();
             }
-            return Response.ok((EmpleadoDto) respuesta.getResultado("Planilla")).build();
+            return Response.ok((TipoPlanillaDto) respuesta.getResultado("Planilla")).build();
         } catch (Exception ex) {
-            Logger.getLogger(EmpleadoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoPlanillaController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error guardando la Planilla").build();
         }
     }
@@ -101,7 +102,7 @@ public class TipoPlanillaController {
             }
             return Response.ok().build();
         } catch (Exception ex) {
-            Logger.getLogger(EmpleadoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoPlanillaController.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(CodigoRespuesta.ERROR_INTERNO.getValue()).entity("Error eliminando la planilla").build();
         }
     }
